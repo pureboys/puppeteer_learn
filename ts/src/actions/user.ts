@@ -22,7 +22,21 @@ export class UserAction {
 
         const registerBtn = await page.waitForSelector('input[type="submit"]');
         await registerBtn.click();
-
-
     }
+
+    public async login(page: Page, username: string, password: string) {
+        await page.goto(config.url, {waitUntil: 'networkidle2'});
+        const loginLink = await page.waitForSelector('a[href="/signin"]');
+        await loginLink.click();
+
+        const usernameInput = await page.waitForSelector('#name');
+        await usernameInput.type(username);
+
+        const passwordInput = await page.waitForSelector('#pass');
+        await passwordInput.type(password);
+
+        const loginBtn = await page.waitForSelector('input[type="submit"]');
+        await loginBtn.click();
+    }
+
 }
