@@ -1,18 +1,15 @@
 import {Browser, launch, Page} from "puppeteer";
+import {UserAction} from "./actions/user";
 
-class Action {
-    public async goUrl(page: Page, url: string) {
-        await page.goto(url)
-    }
-}
 
-async function main() {
-    const action = new Action();
+async function run() {
     let browser: Browser = await launch({
         headless: false,
     });
     let page: Page = await browser.newPage();
-    await action.goUrl(page, 'https://www.baidu.com');
+
+    let userAction = new UserAction();
+    await userAction.register(page, "user911", "123456", "1234567", "user911@123.com")
 }
 
-main();
+run();
