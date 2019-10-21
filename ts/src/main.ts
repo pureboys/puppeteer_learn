@@ -7,7 +7,8 @@ import config from "./config";
 async function run() {
     let browser: Browser = await launch({
         headless: false,
-        slowMo: 100
+        slowMo: 100,
+        defaultViewport: {width: 1366, height: 700}
     });
     let page: Page = await browser.newPage();
 
@@ -21,8 +22,17 @@ async function run() {
     // await page.goto(config.url + '/topic/create', {waitUntil: 'networkidle2'});
     // await topicAction.createTopic(page, 'ask', "感恩作者!", "作者好帅!");
 
-    await page.goto(config.url + '/topic/5dac47ee5675d33f74c1df39/edit', {waitUntil: 'networkidle2'});
-    await topicAction.editTopic(page, 'ask', '再次感恩作者!', '作者好nb!!');
+    // await page.goto(config.url + '/topic/5dac47ee5675d33f74c1df39/edit', {waitUntil: 'networkidle2'});
+    // await topicAction.editTopic(page, 'ask', '再次感恩作者!', '作者好nb!!');
+
+    // await page.goto(config.url, {waitUntil: 'networkidle2'});
+    // await userAction.navToTabByName(page, '招聘');
+    // await userAction.navToTabByName(page, '分享');
+
+    await userAction.goToUserCenter(page);
+    const topic = await userAction.findTopicByName(page, "2019.10.21.21.04");
+    await topic.click();
+
 
 }
 

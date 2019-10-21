@@ -7,3 +7,17 @@ export async function clear(page: Page) {
 
     await page.keyboard.press('Backspace');
 }
+
+export async function findItemByTwoCss(page: Page, css1: string, css2: string, headerName: string) {
+    await page.waitForSelector(css1);
+    const panels = await page.$$(css1);
+    const headerNames = await page.$$eval(css2, eles => eles.map(ele => ele.textContent));
+
+    const index = headerNames.findIndex(header => {
+        if (header) {
+            return header.includes(headerName);
+        }
+    });
+
+    return panels[index];
+}
