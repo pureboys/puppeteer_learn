@@ -30,8 +30,9 @@ async function run() {
     // await userAction.navToTabByName(page, '分享');
 
     await userAction.goToUserCenter(page);
-    const topic = await userAction.findTopicByName(page, "2019.10.21.21.04");
+    const topic = await userAction.findTopicByName(page, "postman学习10月19测试关联的列子1");
     await topic.click();
+    await topicAction.delTopic(page);
 
 
 }
