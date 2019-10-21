@@ -1,6 +1,6 @@
 import {Page} from "puppeteer";
 import config from "../config";
-import {clear} from './common'
+import {clear} from './common';
 
 export class TopicAction {
     public async createTopic(page: Page, tab: string, title: string, content: string) {

@@ -1,4 +1,4 @@
-import {Logger, configure, getLogger} from 'log4js'
+import {Logger, configure, getLogger} from 'log4js';
 
 const logConfig = {
     appenders: {cheese: {type: 'file', filename: 'cheese.log'}},
@@ -30,3 +30,5 @@ export class Log {
     }
 
 }
+
+Log.init();
